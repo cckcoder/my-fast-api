@@ -1,6 +1,10 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends
 
+from sqlalchemy.orm import Session
+from models.database import get_db
+from models.inventory.inventory_model import InventoryBase
+
+from routers.inventory import inventory_controller
 
 router = APIRouter(
     prefix="/inventory",
@@ -8,47 +12,25 @@ router = APIRouter(
 )
 
 
-class InventoryBase(BaseModel):
-    description: str
-    price: float
-    stock: int
-
-
-fake_inventory = [
-    {"description": "pencil", "price": 15, "stock": 15},
-    {"description": "laptop", "price": 5, "stock": 20},
-    {"description": "books", "price": 25, "stock": 30},
-]
-
-
 @router.get("/")
 def get_all_inventory(version: int = 1):
-    if version > 1:
-        return {"msg": "data not available"}
-    else:
-        return fake_inventory
-
+    pass
 
 @router.get("/{id}")
 def inventory_by_id(id: int):
-    item = fake_inventory[id - 1]
-    return item
+    pass
 
 
 @router.post("/")
-def post_api(inventory: InventoryBase):
-    fake_inventory.append(inventory)
-    return inventory
+def create_inventory(request: InventoryBase, db: Session = Depends(get_db)):
+    return inventory_controller.create(db, request)
 
 
 @router.put("/{id}")
 def put_api(id: int, inventory: InventoryBase):
-    fake_inventory[id - 1].update(**inventory.dict())
-    item = fake_inventory[id - 1]
-    return item
+    pass
 
 
 @router.delete("/{id}")
 def delete_api(id: int):
-    item = fake_inventory.pop(id - 1)
-    return item
+    pass
