@@ -1,5 +1,7 @@
 # Welcome Fullstack Flutter with FastAPI Inventory workshop 2022
 
+## Official Page
+[FastAPI](https://fastapi.tiangolo.com/)
 ## Config and Setup tools
 ### Python ENV
 * config python env
@@ -13,11 +15,15 @@
 ## Libraries
 * fastapi `pip install fastapi`
 * uvicorn `pip install "uvicorn[standard]"`
+* black `pip install black`
 * sqlalchemy `pip install sqlalchemy`
 * python-jose `pip install python-jose`
 * decouple `pip install python-decouple`
 * psycopg2 `pip install psycopg2`
 * python-multipart `pip install python-multipart`
+
+## Black formatter
+[black doc](https://github.com/psf/black)
 
 ## Sqlalchemy
 * [Docs](https://docs.sqlalchemy.org/en/14/orm/quickstart.html)
