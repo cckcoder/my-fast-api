@@ -16,6 +16,9 @@ def create(db: Session, request: UserBase):
     db.refresh(new_user)
     return new_user
 
+def read_users(db: Session):
+    return db.query(DbUser).all()
+
 """
 def delete(db: Session, id: int):
     inventory = db.query(DbInventory).filter(DbInventory.id == id).first()
@@ -24,8 +27,6 @@ def delete(db: Session, id: int):
     return JSONResponse(content={"detail": f"Inventory id {id} deleted"})
 
 
-def read_inventory(db: Session):
-    return db.query(DbInventory).all()
 
 
 def read_inventory_by_id(db: Session, id: int):
