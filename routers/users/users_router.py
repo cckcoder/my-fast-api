@@ -14,12 +14,16 @@ from utils.oauth2 import access_user_token
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get("/", response_model=List[UserDisplayBase], dependencies=[Depends(access_user_token)])
+@router.get(
+    "/", response_model=List[UserDisplayBase], dependencies=[Depends(access_user_token)]
+)
 def get_all_user(db: Session = Depends(get_db)):
     return users_controller.read_users(db)
 
 
-@router.get("/{id}", response_model=UserDisplayBase, dependencies=[Depends(access_user_token)])
+@router.get(
+    "/{id}", response_model=UserDisplayBase, dependencies=[Depends(access_user_token)]
+)
 def user_by_id(id: int, db: Session = Depends(get_db)):
     return users_controller.read_user_by_id(db, id)
 
