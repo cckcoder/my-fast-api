@@ -1,5 +1,4 @@
 from datetime import timedelta, datetime
-import tkinter
 from typing import Optional
 
 from fastapi import Depends, HTTPException, status

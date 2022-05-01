@@ -6,8 +6,9 @@ from models.database import get_db
 from models.inventory.inventory_model import InventoryBase, InventoryDisplayBase
 
 from routers.inventory import inventory_controller
+from utils.oauth2 import access_user_token
 
-router = APIRouter(prefix="/inventory", tags=["inventory"])
+router = APIRouter(prefix="/inventory", tags=["inventory"], dependencies=[Depends(access_user_token)])
 
 
 @router.get("/", response_model=List[InventoryDisplayBase])
