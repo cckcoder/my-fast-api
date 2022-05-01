@@ -20,7 +20,6 @@ def inventory_by_id(id: int, db: Session = Depends(get_db)):
     return inventory_controller.read_inventory_by_id(db, id)
 
 
-
 @router.post("/")
 def create_inventory(request: InventoryBase, db: Session = Depends(get_db)):
     return inventory_controller.create(db, request)
