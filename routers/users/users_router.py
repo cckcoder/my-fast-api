@@ -16,7 +16,7 @@ router = APIRouter(prefix="/users", tags=["users"])
 def get_all_user(db: Session = Depends(get_db)):
     return users_controller.read_users(db)
 
-@router.get("/{id}")
+@router.get("/{id}", response_model=UserDisplayBase)
 def user_by_id(id: int, db: Session = Depends(get_db)):
     return users_controller.read_user_by_id(db, id)
 
