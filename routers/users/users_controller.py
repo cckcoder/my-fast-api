@@ -2,13 +2,14 @@ from sqlalchemy.orm import Session
 
 from fastapi.responses import JSONResponse
 
-from models.users.users_model import UserBase, UserDisplayBase, DbUser
+from models.users.users_model import UserBase, DbUser
+from utils.hash import Hash
 
 
 def create(db: Session, request: UserBase):
     new_user = DbUser(
         username=request.username,
-        password=request.password
+        password=Hash.bcrypt(request.password)
     )
 
     db.add(new_user)

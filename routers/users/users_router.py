@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, Depends
 
 from sqlalchemy.orm import Session
@@ -11,7 +12,7 @@ from routers.users import users_controller
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get("/")
+@router.get("/", response_model=List[UserDisplayBase])
 def get_all_user(db: Session = Depends(get_db)):
     return users_controller.read_users(db)
 
