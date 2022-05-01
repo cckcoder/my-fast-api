@@ -1,4 +1,3 @@
-from os import stat
 from fastapi import APIRouter, Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 
