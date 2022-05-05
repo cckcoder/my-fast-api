@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from models.database import engine
+from models.database import engine, Base
 from models.inventory import inventory_model
 from models.users import users_model
 
@@ -19,5 +19,6 @@ def hello():
     return {"Hello": "FastAPI"}
 
 
-inventory_model.Base.metadata.create_all(engine)
-users_model.Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
+# inventory_model.Base.metadata.create_all(engine)
+# users_model.Base.metadata.create_all(engine)
